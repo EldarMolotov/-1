@@ -1,11 +1,8 @@
-import math
+total_seconds = int(input("Введите количество секунд: "))
 
-a = float(input("Введите длину стороны a: "))
-b = float(input("Введите длину стороны b: "))
-c = float(input("Введите длину стороны c: "))
+hours = total_seconds // 3600
+remaining_after_hours = total_seconds % 3600
+minutes = remaining_after_hours // 60
+seconds = remaining_after_hours % 60
 
-p = (a + b + c) / 2
-area = math.sqrt(p * (p - a) * (p - b) * (p - c))
-
-print("Полупериметр:", p)
-print("Площадь:", area)
+print(f"{total_seconds} -> {hours} ч {minutes} мин {seconds} сек")
