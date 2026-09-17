@@ -1,0 +1,54 @@
+class Product:
+    def __init__(self, name, price, quantity):
+        self.name = name
+        self.price = price
+        self.quantity = quantity
+        self.category = "Товар"
+
+    def show_info(self):
+        print("Название:", self.name)
+        print("Цена:", self.price)
+        print("Количество:", self.quantity)
+        print("Категория:", self.category)
+
+    def change_price(self, new_price):
+        self.price = new_price
+
+    def add_product(self, amount):
+        self.quantity += amount
+
+    def stock_cost(self):
+        return self.price * self.quantity
+
+    def change_category(self, category):
+        self.category = category
+
+product1 = Product("Ноутбук", 350000, 5)
+product2 = Product("Мышь", 8000, 10)
+product3 = Product("Клавиатура", 15000, 7)
+
+product1.show_info()
+print("Стоимость:", product1.stock_cost())
+print()
+
+product2.show_info()
+print("Стоимость:", product2.stock_cost())
+print()
+
+product3.show_info()
+print("Стоимость:", product3.stock_cost())
+
+product1.change_price(330000)
+product1.add_product(2)
+
+product2.change_category("Аксессуары")
+
+print("\nПосле изменения:")
+
+product1.show_info()
+print("Стоимость:", product1.stock_cost())
+
+print()
+
+product2.show_info()
+print("Стоимость:", product2.stock_cost())
