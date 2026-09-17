@@ -1,0 +1,69 @@
+class Product:
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+        self.category = "Товар"
+
+    def show_info(self):
+        print(self.name, "-", self.price, "тг.")
+
+    def change_price(self, new_price):
+        self.price = new_price
+
+    def change_category(self, category):
+        self.category = category
+
+class Order:
+    def __init__(self):
+        self.products = []
+        self.status = "Новый"
+
+    def add_product(self, product, quantity):
+        self.products.append([product, quantity])
+
+    def total_cost(self):
+        total = 0
+
+        for item in self.products:
+            product = item[0]
+            quantity = item[1]
+            total += product.price * quantity
+
+        return total
+
+    def show_order(self):
+        print("Статус:", self.status)
+
+        for item in self.products:
+            product = item[0]
+            quantity = item[1]
+            print(product.name, "-", quantity, "шт.")
+
+        print("Стоимость заказа:", self.total_cost(), "тг.")
+
+    def change_status(self, status):
+        self.status = status
+
+product1 = Product("Ноутбук", 350000)
+product2 = Product("Мышь", 8000)
+product3 = Product("Клавиатура", 15000)
+
+order = Order()
+
+order.add_product(product1, 1)
+order.add_product(product2, 2)
+order.add_product(product3, 1)
+
+order.show_order()
+
+print("\nПосле изменения цены:")
+
+product2.change_price(7500)
+
+order.show_order()
+
+print("\nПосле изменения статуса:")
+
+order.change_status("Оплачен")
+
+order.show_order()
