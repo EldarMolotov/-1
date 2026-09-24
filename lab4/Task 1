@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация студента</title>
+</head>
+<body>
+
+<h2>Регистрация студента</h2>
+
+<form id="studentForm">
+
+    <label>ФИО:</label><br>
+    <input type="text" id="name">
+    <br><br>
+
+    <label>E-mail:</label><br>
+    <input type="email" id="email">
+    <br><br>
+
+    <label>Курс:</label><br>
+    <select id="course">
+        <option value="">Выберите курс</option>
+        <option value="1">1 курс</option>
+        <option value="2">2 курс</option>
+        <option value="3">3 курс</option>
+        <option value="4">4 курс</option>
+    </select>
+    <br><br>
+
+    <label>
+        <input type="checkbox" id="agree">
+        Я согласен с правилами
+    </label>
+    <br><br>
+
+    <button type="submit">Зарегистрироваться</button>
+
+</form>
+
+<p id="message"></p>
+
+<script>
+
+    const form = document.getElementById("studentForm");
+
+    form.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        let name = document.getElementById("name").value;
+        let email = document.getElementById("email").value;
+        let course = document.getElementById("course").value;
+        let agree = document.getElementById("agree").checked;
+
+        let message = document.getElementById("message");
+
+        if (name.trim() === "") {
+            message.textContent = "Введите ФИО";
+            message.style.color = "red";
+            return;
+        }
+
+        if (email.trim() === "") {
+            message.textContent = "Введите e-mail";
+            message.style.color = "red";
+            return;
+        }
+
+        if (course === "") {
+            message.textContent = "Выберите курс";
+            message.style.color = "red";
+            return;
+        }
+
+        if (!agree) {
+            message.textContent = "Поставьте согласие с правилами";
+            message.style.color = "red";
+            return;
+        }
+
+        message.textContent = "Форма заполнена правильно!";
+        message.style.color = "green";
+
+    });
+
+</script>
+
+</body>
+</html>
