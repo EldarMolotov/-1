@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+</head>
+<body>
+
+<h2>Регистрация пользователя</h2>
+
+<form id="registrationForm">
+
+    <label>Логин:</label><br>
+    <input type="text" id="login">
+    <span id="loginMessage"></span>
+
+    <br><br>
+
+    <label>E-mail:</label><br>
+    <input type="text" id="email">
+    <span id="emailMessage"></span>
+
+    <br><br>
+
+    <label>Пароль:</label><br>
+    <input type="password" id="password">
+    <span id="passwordMessage"></span>
+
+    <br><br>
+
+    <label>Подтверждение пароля:</label><br>
+    <input type="password" id="password2">
+    <span id="password2Message"></span>
+
+    <br><br>
+
+    <button type="submit">Зарегистрироваться</button>
+
+</form>
+
+<p id="message"></p>
+
+<script>
+
+    let login = document.getElementById("login");
+    let email = document.getElementById("email");
+    let password = document.getElementById("password");
+    let password2 = document.getElementById("password2");
+
+    // Проверка логина
+    login.addEventListener("input", function() {
+
+        if (login.value.length >= 3) {
+            document.getElementById("loginMessage").textContent =
+                " ✓";
+            document.getElementById("loginMessage").style.color =
+                "green";
+        } else {
+            document.getElementById("loginMessage").textContent =
+                " Минимум 3 символа";
+            document.getElementById("loginMessage").style.color =
+                "red";
+        }
+
+    });
+
+
+    // Проверка email
+    email.addEventListener("input", function() {
+
+        if (email.value.includes("@")) {
+            document.getElementById("emailMessage").textContent =
+                " ✓";
+            document.getElementById("emailMessage").style.color =
+                "green";
+        } else {
+            document.getElementById("emailMessage").textContent =
+                " Некорректный email";
+            document.getElementById("emailMessage").style.color =
+                "red";
+        }
+
+    });
+
+
+    // Проверка пароля
+    password.addEventListener("input", function() {
+
+        if (password.value.length >= 6) {
+            document.getElementById("passwordMessage").textContent =
+                " ✓";
+            document.getElementById("passwordMessage").style.color =
+                "green";
+        } else {
+            document.getElementById("passwordMessage").textContent =
+                " Минимум 6 символов";
+            document.getElementById("passwordMessage").style.color =
+                "red";
+        }
+
+    });
+
+
+    // Проверка совпадения паролей
+    password2.addEventListener("input", function() {
+
+        if (
+            password2.value !== "" &&
+            password2.value === password.value
+        ) {
+            document.getElementById("password2Message").textContent =
+                " ✓ Пароли совпадают";
+            document.getElementById("password2Message").style.color =
+                "green";
+        } else {
+            document.getElementById("password2Message").textContent =
+                " Пароли не совпадают";
+            document.getElementById("password2Message").style.color =
+                "red";
+        }
+
+    });
+
+
+    // Проверка при отправке
+    document.getElementById("registrationForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            let message = document.getElementById("message");
+
+            if (login.value.length < 3) {
+                message.textContent =
+                    "Исправьте логин";
+                message.style.color = "red";
+                return;
+            }
+
+            if (!email.value.includes("@")) {
+                message.textContent =
+                    "Введите правильный email";
+                message.style.color = "red";
+                return;
+            }
+
+            if (password.value.length < 6) {
+                message.textContent =
+                    "Пароль должен содержать минимум 6 символов";
+                message.style.color = "red";
+                return;
+            }
+
+            if (password.value !== password2.value) {
+                message.textContent =
+                    "Пароли не совпадают";
+                message.style.color = "red";
+                return;
+            }
+
+            message.textContent =
+                "Регистрация прошла успешно!";
+            message.style.color = "green";
+
+        });
+
+</script>
+
+</body>
+</html>
