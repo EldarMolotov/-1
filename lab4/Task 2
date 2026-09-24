@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Запись к врачу</title>
+</head>
+<body>
+
+<h2>Запись к врачу</h2>
+
+<form id="doctorForm">
+
+    <label>ФИО:</label><br>
+    <input type="text" id="name">
+    <br><br>
+
+    <label>Специальность врача:</label><br>
+    <select id="doctor">
+        <option value="">Выберите врача</option>
+        <option value="therapist">Терапевт</option>
+        <option value="dentist">Стоматолог</option>
+        <option value="cardiologist">Кардиолог</option>
+        <option value="neurologist">Невролог</option>
+    </select>
+    <br><br>
+
+    <label>Дата:</label><br>
+    <input type="date" id="date">
+    <br><br>
+
+    <label>Время:</label><br>
+    <input type="time" id="time">
+    <br><br>
+
+    <label>Тип приёма:</label><br>
+
+    <input type="radio" name="visit" value="first">
+    Первичный
+
+    <br>
+
+    <input type="radio" name="visit" value="repeat">
+    Повторный
+
+    <br><br>
+
+    <button type="submit">Записаться</button>
+
+</form>
+
+<p id="message"></p>
+
+<script>
+
+    const form = document.getElementById("doctorForm");
+
+    form.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        let name = document.getElementById("name").value;
+        let doctor = document.getElementById("doctor").value;
+        let date = document.getElementById("date").value;
+        let time = document.getElementById("time").value;
+
+        let visit = document.querySelector(
+            'input[name="visit"]:checked'
+        );
+
+        let message = document.getElementById("message");
+
+        if (name.trim() === "") {
+            message.textContent = "Введите ФИО";
+            message.style.color = "red";
+            return;
+        }
+
+        if (doctor === "") {
+            message.textContent = "Выберите специальность врача";
+            message.style.color = "red";
+            return;
+        }
+
+        if (date === "") {
+            message.textContent = "Выберите дату";
+            message.style.color = "red";
+            return;
+        }
+
+        if (time === "") {
+            message.textContent = "Выберите время";
+            message.style.color = "red";
+            return;
+        }
+
+        if (visit === null) {
+            message.textContent = "Выберите тип приёма";
+            message.style.color = "red";
+            return;
+        }
+
+        message.textContent = "Вы успешно записались к врачу!";
+        message.style.color = "green";
+
+    });
+
+</script>
+
+</body>
+</html>
